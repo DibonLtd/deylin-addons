@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_self_view_pos_session_form" model="ir.ui.view">
+        <field name="name">pos.self.session.form.view</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_pos_session_closing_control']" position="after">
+                <field name="has_closing_rights"/>
+            </xpath>
+            <xpath expr="//button[@name='action_pos_session_closing_control']" position="attributes">
+                <attribute name="invisible">((state != 'closing_control' and not rescue or state == 'closed' and rescue) and state != 'closing_control') or not has_closing_rights</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

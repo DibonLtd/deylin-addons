@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template"><!-- xml:space="preserve"-->
+    <t t-name="PaymentScreenPaymentLines" t-inherit="point_of_sale.PaymentScreenPaymentLines"
+       t-inherit-mode="extension">
+      <xpath expr="//div[hasclass('paymentline')]" position="after">
+            <t t-if="line.payment_method.enable_payment_ref">
+                <style>
+                    #payment_reference_button {
+                        background-color: #f1cfc3; /* Light grey background */
+                        border: 1px solid #ccc; /* Light grey border */
+                        color: #333; /* Dark grey text */
+                        padding: 10px 20px; /* Smaller padding */
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 14px; /* Smaller font size */
+                        margin: 4px 2px; /* Margin */
+                        cursor: pointer; /* Pointer cursor on hover */
+                        border-radius: 8px; /* Rounded corners */
+                        transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+                        width: 100%; /* Full width */
+                        box-sizing: border-box; /* Include padding in width */
+                    }
+
+                    #payment_reference_button:hover {
+                        background-color: #e0e0e0; /* Slightly darker grey on hover */
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow on hover */
+                    }
+
+                    .payment-reference-display {
+                        color: #333; /* Dark grey text */
+                        background-color: #e8f4f8; /* Light blue background */
+                        padding: 8px; /* Smaller padding */
+                        border-radius: 6px; /* Rounded corners */
+                        font-weight: normal; /* Normal font weight */
+                        text-align: center; /* Center text */
+                        width: 100%; /* Full width */
+                        box-sizing: border-box; /* Include padding in width */
+                        white-space: normal; /* Allow text to wrap */
+                        word-wrap: break-word; /* Break words if necessary */
+                        overflow-wrap: break-word; /* Ensure long words break */
+                    }
+
+                    .payment-reference-add {
+                        color: #007bff; /* Blue text */
+                        background-color: #fff; /* White background */
+                        padding: 8px; /* Smaller padding */
+                        border: 1px dashed #007bff; /* Dashed blue border */
+                        border-radius: 6px; /* Rounded corners */
+                        font-weight: normal; /* Normal font weight */
+                        text-align: center; /* Center text */
+                        cursor: pointer; /* Pointer cursor */
+                        width: 100%; /* Full width */
+                        box-sizing: border-box; /* Include padding in width */
+                        transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+                    }
+
+                    .payment-reference-add:hover {
+                        background-color: #007bff; /* Blue background on hover */
+                        color: #fff; /* White text on hover */
+                    }
+
+                    /* Responsive Design */
+                    @media (max-width: 600px) {
+                        #payment_reference_button {
+                            padding: 8px 16px; /* Adjust padding for smaller screens */
+                            font-size: 12px; /* Smaller font size */
+                        }
+
+                        .payment-reference-display,
+                        .payment-reference-add {
+                            padding: 6px; /* Adjust padding for smaller screens */
+                            font-size: 12px; /* Smaller font size */
+                        }
+                    }
+
+
+
+                </style>
+                <div>
+                    <div id="payment_reference_button" class="button js_invoice" t-on-click="() => this.IsPaymentReferenceButton(line)">
+                        <t t-if="line.user_payment_reference != undefined and line.user_payment_reference != '' and line.user_payment_reference != false">
+                            <div class="payment-reference-display">
+                                Payment Reference : <t t-esc="line.user_payment_reference"/>
+                            </div>
+                        </t>
+                        <t t-else="line.user_payment_reference == false or line.user_payment_reference == ''">
+                            <li class="info payment-reference-add">
+                                <i class="fa fa-credit-card"/> Add Payment-Reference
+                            </li>
+                        </t>
+                    </div>
+                </div>
+            </t>
+      </xpath>
+    </t>
+ </templates>

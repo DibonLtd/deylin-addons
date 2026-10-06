@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<odoo noupdate="0">
+    <record id="mail_template_crm_approval" model="mail.template">
+        <field name="name">Application Approved</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="subject">Congratulations! Your application has been approved</field>
+        <field name="email_from">{{object.company_id.email}}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="description">Sent notify mail on application approval</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Dear
+                    <b>
+                        <t t-out="object.partner_id.name"/>
+                    </b>
+                </p>
+                <p>Greetings from the Friends of Karura Forest (FKF).</p>
+                <p>We would like to inform you that your application has been verified and approved by the FKF. Your
+                    subscriptions will be created shortly and posted on your FKF web portal that can be accessed at the
+                    link,
+                    <a t-att-href="'%s/my/home' % object.get_base_url()" class="text-dark">
+                        My Portal | Web Portal | Friends of Karura Forest (sybylcloud.com)
+                    </a>
+                </p>
+                <p>For further queries, you may please write to info@friendsofkarura.org.</p>
+                <p>Thank you,</p>
+            </div>
+        </field>
+        <field name="lang">{{object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+</odoo>

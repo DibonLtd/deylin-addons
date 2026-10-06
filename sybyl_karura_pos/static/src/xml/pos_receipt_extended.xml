@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="sybyl_karura_pos.ReceiptHeader" t-inherit="point_of_sale.ReceiptHeader" t-inherit-mode="extension">
+        <xpath expr="//br[1]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//br[2]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//br[3]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//img" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//div[@t-esc='props.data.company.partner_id[1]']" position="replace">
+            <t t-if="props.data.company.pos_receipt_title">
+                <pre style="white-space: pre-line;margin: auto;font: revert;">
+                <t t-esc="props.data.company.pos_receipt_title"/>
+                </pre>
+            </t>
+            <t t-else="">
+                <div t-if="props.data.company.partner_id?.[1]" t-esc="props.data.company.partner_id[1]"/>
+            </t>
+        </xpath>
+    </t>
+
+    <t t-name="sybyl_karura_pos.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[@t-esc='props.data.name']" position="before">
+            <t t-esc="props.data.config_name"/>
+        </xpath>
+        <xpath expr="//div[@class='pos-receipt']" position="attributes">
+            <attribute name="style">margin-top: -24px !important;</attribute>
+        </xpath>
+        <xpath expr="//br[2]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//br[3]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//div[@class='pos-receipt-center-align']/br[1]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//div[@class='pos-receipt-center-align']/br[2]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//div[@class='pos-receipt-center-align']/br[3]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//br[4]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+        <xpath expr="//br[5]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+    </t>
+    <t t-name="sybyl_karura_pos.ReceiptScreen" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension">
+        <xpath expr="//div[@class='buttons my-3']" position="attributes">
+            <attribute name="t-att-class">this.pos.company.has_admin_rights ? '' : 'd-none'</attribute>
+        </xpath>
+        <xpath expr="//div[@class='d-inline-block m-3 p-3 border rounded bg-view text-start overflow-y-auto']"
+               position="attributes">
+            <attribute name="style">height: fit-content !important;</attribute>
+        </xpath>
+    </t>
+    <t t-name="sybyl_karura_pos.ReprintReceiptButton" t-inherit="point_of_sale.ReprintReceiptButton"
+       t-inherit-mode="extension">
+        <xpath expr="//button" position="attributes">
+            <attribute name="t-att-class">this.pos.company.has_admin_rights ? '' : 'd-none'</attribute>
+        </xpath>
+    </t>
+</templates>

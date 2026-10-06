@@ -1,0 +1,15 @@
+<odoo>
+    <record id="crm_lead_tracking_log_rule_user" model="ir.rule">
+        <field name="name">Users: Own tracking logs only</field>
+        <field name="model_id" ref="model_crm_lead_tracking_log"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="crm_lead_tracking_log_rule_admin" model="ir.rule">
+        <field name="name">Admin: See all logs</field>
+        <field name="model_id" ref="model_crm_lead_tracking_log"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+</odoo>

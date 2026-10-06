@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="sybyl_karura_pos.ClosePosPopup" t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension">
+        <xpath expr="//footer//button[@t-att-disabled='!canConfirm()']" position="replace">
+            <button class="button highlight btn btn-lg btn-primary" t-if="pos.pos_session.has_closing_rights" t-att-disabled="!canConfirm()" t-on-click="confirm">Close Session</button>
+        </xpath>
+    </t>
+</templates>

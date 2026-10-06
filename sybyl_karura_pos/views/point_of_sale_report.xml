@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_details_xlsx_report" model="ir.actions.report">
+        <field name="name">Sales Details Xlsx</field>
+        <field name="model">pos.session</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">sybyl_karura_pos.pos_session_xlsx</field>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_session"/>
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>
